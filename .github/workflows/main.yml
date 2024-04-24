@@ -15,7 +15,6 @@ jobs:
         run: npm run build
       - name: Deploy to GitHub Pages
         run: |
-          # Завантаження зібраного проекту на гілку gh-pages
           git checkout -b gh-pages
           git add .
           git commit -m "Deploy to GitHub Pages"
