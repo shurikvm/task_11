@@ -14,8 +14,6 @@ jobs:
       - name: Build project
         run: npm run build
       - name: Deploy to GitHub Pages
-         with:
-          ACCESS_TOKEN:: ${{ secrets.ACCESS_TOKEN }}
         run: |
           # Завантаження зібраного проекту на гілку gh-pages
           git checkout -b gh-pages
