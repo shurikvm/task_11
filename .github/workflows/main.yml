@@ -21,6 +21,4 @@ jobs:
           git commit -m "Deploy to GitHub Pages"
           git push origin gh-pages
         with:
-          github_token: ${{ secrets.ACCESS_TOKEN }}
-          publish_dir: ./
-          enable_jekyll: false
+          ACCESS_TOKEN:: ${{ secrets.ACCESS_TOKEN }}
