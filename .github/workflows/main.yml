@@ -14,7 +14,7 @@ concurrency:
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
@@ -37,25 +37,18 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Update HTML file
+        run: sed -i 's@<a href="index.html">@<a href="/task_11/index.html">@g' index.html
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: .    
       - name: Update data file 2
         run: |
          sed -i 's@<p id="myname"></p>@<p id="myname">${{ vars.MY_NAME }}</p>@g' index.html      
          cat index.html
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          # Upload entire repository
-          path: '.'
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: .
