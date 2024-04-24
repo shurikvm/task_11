@@ -43,7 +43,9 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: .    
       - name: Update data file 2
         run: |
          sed -i 's@<p id="myname"></p>@<p id="myname">${{ vars.MY_NAME }}</p>@g' index.html      
